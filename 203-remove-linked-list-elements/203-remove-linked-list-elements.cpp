@@ -15,7 +15,7 @@ public:
         if(head==NULL)return NULL;
         
         
-        ListNode* start=head,*temp,*temp2;
+        ListNode* start=head,*temp2;
         
         while(start!=NULL && start->next!=NULL)
         {
