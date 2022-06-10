@@ -10,18 +10,37 @@ class Solution {
 public:
     bool hasCycle(ListNode *head) { 
         
-        if(head==NULL)return false;
-        map<ListNode*,bool>visit;
+        /*FLLOYD CYCLE DETECTION ALGORITHM*/
+         if(head==NULL)return false;
         
-        while(head!=NULL)
+        ListNode* fast=head,*slow=head;
+        
+        while(fast!=NULL && fast->next!=NULL)
         {
-            if(visit[head]==true)
-            {
-                return true;
-            }
-            visit[head]=true;
-            head=head->next;
+            
+            
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast)return true;
+            
         }
         return false;
+        /*Normal Method*/
+        
+       
+//         map<ListNode*,bool>visit;
+        
+//         while(head!=NULL)
+//         {
+//             if(visit[head]==true)
+//             {
+//                 return true;
+//             }
+//             visit[head]=true;
+//             head=head->next;
+//         }
+//         return false;
+        
+        
     }
 };
