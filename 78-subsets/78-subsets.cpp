@@ -17,7 +17,6 @@ void solve(vector<int> nums,int index,vector<int>out,vector<vector<int>>&ans)
 
     solve(nums,index+1,out,ans);
 
- 
 
 }
 
