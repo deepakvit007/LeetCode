@@ -22,7 +22,7 @@ public:
        //vector<int>dp(n+1);
         
 //          dp[1]=1;
-//         dp[0]=0;
+//         dp[0]=1;
        int prev1,prev2,curr;
         
         prev1=1;
