@@ -17,6 +17,7 @@ return dp[n];
 
 int minCostClimbingStairs(vector<int>& cost) {
     int n=cost.size();
+    cout<<n;
   // STEP1
   vector<int> dp(n+1,-1);
   int ans= min(solve2(cost,n-1,dp),solve2(cost,n-2,dp));
