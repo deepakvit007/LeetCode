@@ -1,51 +1,60 @@
 class Solution {
 public:
+   int cal(int a,int b,string op)
+    {
+        if( op =="+")
+        {
+            return a + b;
+        }
+        if(op =="-")
+        {
+            return b - a;
+        }
+        if(op =="*")
+        {
+            return a * b;
+        }
+        if(op =="/")
+        {
+            
+            return b/a;
+        }
+        return 0;
+    }
+    
     int evalRPN(vector<string>& tokens) {
         int n=tokens.size();
         if(n==1) return stoi(tokens[0]);
-       if(n<2) return 0;
-        stack<int> st;
-        st.push(stoi(tokens[0]));
-        st.push(stoi(tokens[1]));
-            int ans2=0,ans1=0;
-    for(int i=2;i<n;i++){
-        if(tokens[i]=="+"){
-            ans2=st.top();
-            st.pop();
-            ans1=st.top();
-            st.pop();
-            ans1=ans1+ans2;
-            st.push(ans1);
-        }
-        else  if(tokens[i]=="-"){
-            ans2=st.top();
-            st.pop();
-            ans1=st.top();
-            st.pop();
-            ans1=ans1-ans2;
-            st.push(ans1);
-        }
-        else  if(tokens[i]=="*"){
-            ans2=st.top();
-            st.pop();
-            ans1=st.top();
-            st.pop();
-            ans1=ans1*ans2;
-            st.push(ans1);
-        }
-        else  if(tokens[i]=="/"){
-            ans2=st.top();
-            st.pop();
-            ans1=st.top();
-            st.pop();
-            ans1=ans1/ans2;
-            st.push(ans1);
-        }
-        else
-            st.push(stoi(tokens[i]));
+        if(n<2) return 0;
+     stack<string>ans;
         
-    }
-        int ans=st.top();
-        return ans;
+        int temp1,temp2,res;
+        
+        
+        for(int i=0;i<n;i++)
+        {
+           
+            if(tokens[i]=="+"||tokens[i]=="*"||tokens[i]=="-"||tokens[i]=="/")
+            {
+                temp1=stoi(ans.top());
+                cout<<temp1<<endl;
+                ans.pop();
+                temp2=stoi(ans.top());
+                cout<<temp2<<endl;
+                ans.pop();
+                res=cal(temp1,temp2,tokens[i]);
+                cout<<res<<endl;
+                ans.push(to_string(res));
+            }
+             else
+            {
+                ans.push(tokens[i]);
+            }
+            
+        }
+        int anss=stoi(ans.top());
+        
+        return anss ;
+        
     }
 };
