@@ -20,22 +20,28 @@ public:
                         i++;               
                     }
                   sum=sum + sign*num;
-                  i--;
+                  i--;//our index move one ahead so we are correcting it
             }
             else if(s[i]=='+')sign=1;
             else if(s[i]=='-')sign=-1;
             else if(s[i]=='(')
             {
-                st.push(sum);
-                st.push(sign);
+                //storing our prev sum and sign
+                st.push(sum);//pushing sum first
+                st.push(sign);//pushing sign 
+                
+                //restoring the default value
                 sign=1;
                 sum=0;
             }
             else if(s[i]==')')
             {
-                sign=st.top();st.pop();
-                int prevSum=st.top();st.pop();
+                sign=st.top();st.pop();//popping out the sign 
+                int prevSum=st.top();st.pop();//popping out the sum that we pushed
+                
+               // updating our current sum
                 sum=sign*sum;
+                // adding prevsum to our current sum
                 sum=sum+prevSum;
                
             }
