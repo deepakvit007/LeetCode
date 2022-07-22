@@ -8,10 +8,9 @@ public:
         mp1[n]++;
         while(true){
             int t=n,te=0;
-            while(t>0){
-                int x=t%10;
+            for(char i:to_string(t)){
+                int x=i-'0';
                 te+=x*x;
-                t/=10;
             }
             if(te==1){
                 return true;
