@@ -1,35 +1,28 @@
+
 class Solution {
 public:
-    int help(int n)
-    {
-        int dig,ans=0;
-        while(n>0)
-        {
-           dig=n%10;
-            ans=ans+dig*dig;
-            n=n/10;
-            
-        }
-        return ans;
-    }
-    
     bool isHappy(int n) {
         
-        int slow=n,fast=n;
-        
-        
-        do
-        {
-            slow=help(slow);
-            fast=help(help(fast));
-            n=slow;
-            if(fast==1)return true;
+        map<int,int>mp1;
+        int sum=n;
+        mp1[n]++;
+        while(true){
+            int t=n,te=0;
+            while(t>0){
+                int x=t%10;
+                te+=x*x;
+                t/=10;
+            }
+            if(te==1){
+                return true;
+            }
             
-        }while(slow!=fast);
-        
-        return false;
-        
-        
-        
+            mp1[te]++;
+            
+            if(mp1[te]>1){
+                return false;
+            }
+            n=te;
+        }
     }
 };
