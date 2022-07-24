@@ -4,8 +4,7 @@ public:
         vector<int>ans;
         // sort(nums.begin(),nums.end());
         int i=0;
-         int j=nums.size()-1;
-         
+        int j=nums.size()-1; 
         
         while(i<j)
         {
@@ -17,7 +16,7 @@ public:
                 
             }
             else if((nums[i]+nums[j])<target){i++;}
-            else if((nums[i]+nums[j])>target)
+            else
             {j--;}
         }
         
