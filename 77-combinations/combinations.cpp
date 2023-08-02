@@ -9,13 +9,16 @@ public:
             return;
         }
 
-        if(ind >n )return ;
+        //if(ind >n )return ;
+       for(int i = ind;i<=n;i++)
+       {
 
-        temp.push_back(ind);
-        solve(ind+1,k - 1,temp,ans,n);
+       
+        temp.push_back(i);
+        solve(i+1,k - 1,temp,ans,n);
         temp.pop_back();
-
-        solve(ind+1,k,temp,ans,n);
+       }
+       // solve(ind+1,k,temp,ans,n);
     }
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>>ans;
