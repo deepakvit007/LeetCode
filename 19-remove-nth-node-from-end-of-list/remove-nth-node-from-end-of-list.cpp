@@ -25,13 +25,16 @@ public:
     {
         if(head == NULL)
         return head;
-        if(ind == 1 and head->next!=NULL)
+        if(ind == 1)
         {
           head->next=head->next->next;
-          return head;
+         
         }
 
-        return rem (head->next,ind -1);
+       ListNode*temp = rem (head->next,ind -1);
+
+     head -> next = temp;
+     return head;
 
     }
     ListNode* removeNthFromEnd(ListNode* head, int n) {
@@ -45,17 +48,6 @@ public:
            return head->next;
         }
 
-        ListNode*temp2 = head;
-        while(ind>1)
-        {
-            head=head->next;
-            ind--;
-        }
-
-        ListNode * temp = head->next->next;
-
-        head->next = temp;
-
-        return temp2;
+        return rem(head,ind);
     }
 };
