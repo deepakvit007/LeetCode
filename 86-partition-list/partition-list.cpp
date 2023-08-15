@@ -10,64 +10,57 @@
  */
 class Solution {
 public:
+    void insertAtEnd(ListNode*& head, ListNode * newNode)
+    {
+        
+        if(head == NULL)
+        {
+            head = newNode;
+        }
+        else
+        {
+        ListNode * temp = head;
+        while(temp->next!=NULL)
+        {
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+        }
+
+    }
     ListNode* partition(ListNode* head, int x) {
         if(head==NULL )return NULL;
-         if(head->next==NULL )return head;
+        if(head->next==NULL )return head;
         ListNode * list1 = NULL;
         ListNode * list2 = NULL;
         
         ListNode* temp = head;
         ListNode* prev = NULL;
+
         while(temp!=NULL)
         {
-           if(temp->val<x)
-           {
-                ListNode *newNode = new ListNode(temp->val);
-               if(list1 == NULL)
-               {
-                   list1 = newNode;
-
-               }
-               else
-               {
-              
-                ListNode *ptr = list1;
-
-                while(ptr->next!=NULL)
-                {
-                    ptr = ptr->next;
-                }
-                ptr->next = newNode;
-               }
+            ListNode * newNode = new ListNode(temp->val);
+            if(temp->val < x )
+            {
+                insertAtEnd(list1,newNode);
                 prev = newNode;
-               
-           } 
-           else if(temp->val>=x)
-           {
-               if(list2 == NULL)
-               {
-                   list2 = new ListNode(temp->val);
+            }
+            else if(temp->val>=x)
+            {
+                insertAtEnd(list2,newNode);
+            }
 
-               }
-               else
-               {
-               ListNode *newNode = new ListNode(temp->val);
-                ListNode *ptr = list2;
-
-                while(ptr->next!=NULL)
-                {
-                    ptr = ptr->next;
-                }
-                ptr->next = newNode;
-               }
-
-           }
-
-           temp = temp->next;
+            temp = temp->next;
         }
-       if(list1!=NULL)prev->next = list2;
-    else
-    return list2;
-       return list1;
+
+        if(list1!=NULL)
+        {prev->next = list2;
+        return list1;
+        }
+
+        return list2;
+
     }
+
 };
