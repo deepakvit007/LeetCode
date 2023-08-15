@@ -38,15 +38,15 @@ public:
 
         if(head==NULL || head->next == NULL)return NULL;
         int size = length(head);
-        int ind  = size - n +1 ;
+        int ind  = size - n  ;
 
-        if(n==size )
+        if(n == size )
         {
            return head->next;
         }
 
         ListNode*temp2 = head;
-        while(ind>2)
+        while(ind>1)
         {
             head=head->next;
             ind--;
