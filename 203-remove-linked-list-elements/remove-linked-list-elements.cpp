@@ -17,7 +17,7 @@ public:
         
         dummy->next = head;
 
-        while(tail->next!=NULL)
+        while(tail!=NULL and tail->next!=NULL)
         {
             if(tail->next->val == val)
             {
