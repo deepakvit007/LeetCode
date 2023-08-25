@@ -20,7 +20,7 @@ public:
         {
             if(targetSum == root->val)
             {ans.push_back(temp);
-            temp.clear();
+            
             }
         }
 
