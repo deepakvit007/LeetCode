@@ -16,13 +16,13 @@ public:
         if(root1 == NULL)return root2;
         if(root2 == NULL)return root1;
         
-        stack< pair<TreeNode*,TreeNode*> >st;
+        queue< pair<TreeNode*,TreeNode*> >st;
          
          st.push({root1,root2});
 
          while(!st.empty())
          {
-            auto node = st.top();
+            auto node = st.front();
             st.pop();
 
             TreeNode *bt1 = node.first;
