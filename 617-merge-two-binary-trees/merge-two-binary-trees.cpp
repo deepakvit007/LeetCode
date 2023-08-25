@@ -15,11 +15,43 @@ public:
         
         if(root1 == NULL)return root2;
         if(root2 == NULL)return root1;
+        
+        stack< pair<TreeNode*,TreeNode*> >st;
+         
+         st.push({root1,root2});
 
-        root1->val += root2->val;
+         while(!st.empty())
+         {
+            auto node = st.top();
+            st.pop();
 
-        root1->left = mergeTrees(root1->left,root2->left);
-        root1->right = mergeTrees(root1->right,root2->right);
+            TreeNode *bt1 = node.first;
+            TreeNode *bt2 = node.second;
+            
+             bt1->val += bt2->val;
+
+            if(bt1->left == NULL)
+            {
+                bt1->left = bt2->left;
+            }
+            else if(bt2->left)
+            {
+                st.push({bt1->left,bt2->left});
+            }
+            
+            
+            if(bt1->right == NULL)
+            {
+                bt1->right = bt2->right;
+            }
+            else if(bt2->right)
+            {
+                st.push({bt1->right,bt2->right});
+            }
+         }
+
+        
+        
 
         return root1;
 
