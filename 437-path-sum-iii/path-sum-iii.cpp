@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root, int targetSum,long long sum,int &total,unordered_map<long long,int>mp)
+    void solve(TreeNode* &root, int targetSum,long long sum,int &total,unordered_map<long long,int>&mp)
     {
         if(root == NULL)return;
 
