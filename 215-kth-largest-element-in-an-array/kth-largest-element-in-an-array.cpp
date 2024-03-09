@@ -6,8 +6,8 @@ public:
         for(auto s : nums){
             maxh.push(s);
         }
-        k=k-1;
-        while(k--)
+
+        while(--k)
         {
               maxh.pop();
         }
