@@ -17,14 +17,11 @@ public:
             {
                start++;
             }
-            else if(nums[zero]!=0 and nums[start] == 0)
-            {
-                zero++;
-            }
             else
             {
+                zero++;
                 start++;
-            }
+            }  
 
         }
     }
