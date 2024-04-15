@@ -11,32 +11,29 @@
  */
 class Solution {
 public:
-    void solve(TreeNode*root,vector<string>temp,int &result)
+    void solve(TreeNode* root,string temp,int &ans)
     {
-        if(root == NULL)return;
-         temp.push_back(to_string(root->val));
-        if(!root->left and !root->right)
-        {
-            string curr ="";
-            for(auto x : temp)
-            {
-           
-                curr += x;
-
-            }
-            result+=stoi(curr);
-        } 
-
+        if(root== NULL)return;
        
-        solve(root->left,temp,result);
-        solve(root->right,temp,result);
-        temp.pop_back();
+        if(root->left == NULL and root->right == NULL)
+        {
+            temp +=to_string(root->val);
+            ans +=stoi(temp);
+            //temp = ""
+            
+           return;
+        }
 
+        temp +=to_string(root->val);
+       
+        solve(root->left,temp,ans);
+        solve(root->right,temp,ans);
     }
     int sumNumbers(TreeNode* root) {
-        int result = 0;
-        vector<string>temp;
-        solve(root,temp,result);
-        return result;
+      int ans = 0;
+      string temp="";
+      solve(root,temp,ans);
+
+      return ans;  
     }
 };
