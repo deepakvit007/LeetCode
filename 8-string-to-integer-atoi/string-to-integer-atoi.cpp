@@ -3,16 +3,19 @@ class Solution
     public:
         void solve(string s, int i, int sign, long &temp, int &ans)
         {
-            if (sign == -1 and temp > INT_MAX)
-            {
-                ans = INT_MIN;
-                return;
-            }
-            if (sign == 1 and temp > INT_MAX)
+            //rounding off
+            if (sign * temp > INT_MAX)
             {
                 ans = INT_MAX;
                 return;
             }
+            if (sign * temp < INT_MIN)
+            {
+                ans = INT_MIN;
+                return;
+            }
+
+            //conversion
             if (s[i] >= '0'
                 and s[i] <= '9')
             {
@@ -23,7 +26,8 @@ class Solution
                 ans = sign * temp;
                 return;
             }
-
+            
+            //recursive call
             solve(s, i + 1, sign, temp, ans);
         }
     int myAtoi(string s)
