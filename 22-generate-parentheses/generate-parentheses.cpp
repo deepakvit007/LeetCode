@@ -8,19 +8,29 @@ class Solution
                 ans.push_back(output);
                 return;
             }
+           	// following recursion tree
+           	// if (open == close)
+           	// {
+           	//     solve(open - 1, close, n, output + '(', ans);
+           	// }
+           	// else if (open == 0)
+           	// {
+           	//     solve(open, close - 1, n, output + ')', ans);
+           	// }
+           	// else if (close > open)
+           	// {
+           	//     solve(open, close - 1, n, output + ')', ans);
+           	//     solve(open - 1, close, n, output + '(', ans);
+           	// }
 
-            if (open == close)
+            if (open != 0)
             {
                 solve(open - 1, close, n, output + '(', ans);
             }
-            else if (open == 0)
+
+            if (close > open)
             {
                 solve(open, close - 1, n, output + ')', ans);
-            }
-            else if (close > open)
-            {
-                solve(open, close - 1, n, output + ')', ans);
-                solve(open - 1, close, n, output + '(', ans);
             }
         }
     vector<string> generateParenthesis(int n)
@@ -28,7 +38,7 @@ class Solution
         vector<string> ans;
         int open = n;
         int close = n;
-        string output="";
+        string output = "";
         solve(open, close, n, output, ans);
         return ans;
     }
