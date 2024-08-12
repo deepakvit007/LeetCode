@@ -1,40 +1,45 @@
 /**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
+ *Definition for a binary tree node.
+ *struct TreeNode {
+ *   int val;
+ *   TreeNode * left;
+ *   TreeNode * right;
+ *   TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *};
  */
-class Solution {
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        //if(root == NULL)return {};
-        stack<TreeNode*>st;
-        vector<int>ans;
-        TreeNode* node = root;
-        while(true)
+class Solution
+{
+    public:
+        vector<int> inorderTraversal(TreeNode *root)
         {
-            
-            if(node!=NULL)
+            if (root == NULL) return {};
+            vector<int> ans;
+            stack<TreeNode*> s;
+
+            auto temp = root;
+            while (temp)
             {
-                st.push(node);
-                node = node->left;
+                s.push(temp);
+                temp = temp->left;
             }
-            else
+
+            while (!s.empty())
             {
-            if(st.empty() == true)break;
-            node = st.top();
-            st.pop();
-            ans.push_back(node->val);
-          
-            node = node->right;
+                auto curr = s.top();
+                s.pop();
+
+                ans.push_back(curr->val);
+
+                auto temp = curr->right;
+                while (temp)
+                {
+                    s.push(temp);
+                    temp = temp->left;
+                }
             }
-            
+
+            return ans;
         }
-        return ans;
-    }
 };
