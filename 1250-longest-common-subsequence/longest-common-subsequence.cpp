@@ -17,9 +17,9 @@ public:
     // Tabulation (bottom-up) approach
     int tab(int n, int m, string text1, string text2, vector<vector<int>> &dp)
     {
-        // Initialize first row and first column for base cases
-        for (int i = 0; i <= n; i++) dp[i][0] = 0;  // If text2 is empty
-        for (int j = 0; j <= m; j++) dp[0][j] = 0;  // If text1 is empty
+        // // Initialize first row and first column for base cases
+        // for (int i = 0; i <= n; i++) dp[i][0] = 0;  // If text2 is empty
+        // for (int j = 0; j <= m; j++) dp[0][j] = 0;  // If text1 is empty
 
         // Fill the dp table
         for (int i = 1; i <= n; i++)
