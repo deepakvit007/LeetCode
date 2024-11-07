@@ -9,9 +9,28 @@ class Solution {
         
     }
 
+    public int fib_memo(int n , int dp[]) {
+
+        if(n<=1)return n;
+
+        if(dp[n]!=-1) return dp[n]; // checking if we already calculated the values of not 
+
+        return dp[n] = fib_memo(n-1, dp)+fib_memo(n-2, dp); // stroing the answer
+        
+    }
+
     public int fib(int n) {
 
-        return fib_rec(n);
+        // conversion to memoziation
+        //1. array bana 
+
+        int dp[] = new int[n+1]; // first step - 1 extra 
+
+        // 2nd step ka fill -1 
+        Arrays.fill(dp,-1);
+
+
+        return fib_memo(n , dp);
         
     }
 
