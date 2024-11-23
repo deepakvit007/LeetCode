@@ -1,50 +1,56 @@
 class Solution {
-    public void dfs(int row , int col ,  boolean visited[][] ,char[][] board, int n, int m )
-    {
-        visited[row][col] = true;
-        int delRow[] = {1,0,-1,0};
-        int delCol[] = {0,-1,0,1};
 
-        for(int i=0;i<4;i++)
-        {
+    // Depth-First Search (DFS) function to mark connected 'O' cells
+    public void dfs(int row, int col, boolean visited[][], char[][] board, int n, int m) {
+        // Mark the current cell as visited
+        visited[row][col] = true;
+
+        // Define possible directions to move: down, left, up, right
+        int delRow[] = {1, 0, -1, 0};
+        int delCol[] = {0, -1, 0, 1};
+
+        // Traverse all 4 possible directions
+        for (int i = 0; i < 4; i++) {
             int nRow = row + delRow[i];
             int nCol = col + delCol[i];
 
-            if(nRow>=0 && nCol>=0 && nRow<n && nCol<m && visited[nRow][nCol] == false && board[nRow][nCol]=='O')
-            {
-                dfs(nRow,nCol,visited,board,n,m);
+            // Check if the next cell is within bounds, not visited, and contains 'O'
+            if (nRow >= 0 && nCol >= 0 && nRow < n && nCol < m &&
+                !visited[nRow][nCol] && board[nRow][nCol] == 'O') {
+                // Recursively call DFS on the connected cell
+                dfs(nRow, nCol, visited, board, n, m);
             }
         }
     }
+
     public void solve(char[][] board) {
-        int n = board.length;
-        int m = board[0].length;
+        // Get dimensions of the board
+        int n = board.length;        // Number of rows
+        int m = board[0].length;     // Number of columns
+
+        // Create a visited array to keep track of explored cells
         boolean visited[][] = new boolean[n][m];
 
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(i==0 || j==0 || i==n-1 || j == m-1 )
-                {
-                    if(!visited[i][j] && board[i][j] == 'O')
-                    dfs(i,j,visited,board,n,m);
+        // Step 1: Perform DFS for all 'O' cells on the boundaries
+        for (int i = 0; i < n; i++) {       // Traverse rows
+            for (int j = 0; j < m; j++) {   // Traverse columns
+                // If the cell is on the boundary and contains 'O', start DFS
+                if (i == 0 || j == 0 || i == n - 1 || j == m - 1) {
+                    if (!visited[i][j] && board[i][j] == 'O') {
+                        dfs(i, j, visited, board, n, m);
+                    }
                 }
             }
         }
-        
-         for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(!visited[i][j] && board[i][j] == 'O')
-                {
+
+        // Step 2: Flip all unvisited 'O' cells to 'X'
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                // If the cell is not visited and contains 'O', flip it to 'X'
+                if (!visited[i][j] && board[i][j] == 'O') {
                     board[i][j] = 'X';
                 }
             }
         }
-
-
-
     }
 }
