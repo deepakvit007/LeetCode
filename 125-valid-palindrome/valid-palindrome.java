@@ -10,17 +10,17 @@ class Solution {
 
     public boolean isPalindrome(String s) {
         s = s.toLowerCase();
-        String modified = "";
+       StringBuilder modified = new StringBuilder();
         for(char c : s.toCharArray())
         {
             if(Character.isLetterOrDigit(c))
             {
-               modified = modified + c;
+               modified.append(c);
             }
         }
         int start = 0;
         int end = modified.length() - 1;
 
-        return help(start, end, modified);
+        return help(start, end, modified.toString());
     }
 }
